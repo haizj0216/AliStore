@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/find_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入产品名称"
+        android:textColor="@android:color/black"
+        android:textColorHint="#565656" />
+
+    <ListView
+        android:id="@+id/find_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/find_edit"
+        android:layout_marginTop="5dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent" />
+</RelativeLayout>
