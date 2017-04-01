@@ -1,5 +1,7 @@
 package com.haizj.alistore.base.bean;
 
+import android.text.TextUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +57,36 @@ public class Product implements Serializable {
             e.printStackTrace();
         }
         return object.toString();
+    }
+
+    public String getSubString(List<Product> subs) {
+        if (subs != null) {
+            JSONArray array = new JSONArray();
+            for (int i = 0; i < subs.size(); i++) {
+                Product product = subs.get(i);
+                array.put(product.getJsonString());
+            }
+            return array.toString();
+        }
+        return "";
+    }
+
+    public List<Product> parseSub(String jsonStr) {
+        if (TextUtils.isEmpty(jsonStr)) {
+            return null;
+        }
+        List<Product> subProducts = new ArrayList<>();
+        try {
+            JSONArray array = new JSONArray(jsonStr);
+            for (int i = 0; i < array.length(); i++) {
+                Product product = new Product();
+                product.parseJson(array.optString(i));
+                subProducts.add(product);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return subProducts;
     }
 
     public void parseJson(String jsonStr) {

@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_publish_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="2016年10月1日"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_publish_date"
+        android:text="2016年10月1日"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_publish_date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="红色"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_publish_date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_color"
+        android:text="10"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_publish_date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_count"
+        android:text="100.0"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_selt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_publish_date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/item_price"
+        android:text="120.0"
+        android:textColor="@android:color/black" />
+</RelativeLayout>

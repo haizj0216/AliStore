@@ -3,6 +3,7 @@ package com.haizj.alistore.base.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 
 import com.haizj.alistore.base.bean.Product;
 import com.hyena.framework.database.BaseTable;
@@ -24,11 +25,18 @@ public class ProductTable extends BaseTable<Product> {
     private static final String PRODUCT_SELF_PRICE = "product_selfprice";
     private static final String PRODUCT_ZXING = "product_zing";
     private static final String PRODUCT_LINK = "product_link";
+    private static final String PRODUCT_COLOR = "product_color";
+    private static final String PRODUCT_PUBLSH_DATE = "product_publish";
+    private static final String PRODUCT_END_DATE = "product_end";
+    private static final String PRODUCT_PROFIT = "product_profit";
+    private static final String PRODUCT_SUBS = "product_subs";
 
     private String[] colums = new String[]
             {
                     PRODUCT_NAME, PRODUCT_ID, PRODUCT_COUNT, PRODUCT_LEFT,
-                    PRODUCT_PRICE, PRODUCT_SELF_PRICE, PRODUCT_ZXING, PRODUCT_LINK
+                    PRODUCT_PRICE, PRODUCT_SELF_PRICE, PRODUCT_ZXING, PRODUCT_LINK,
+                    PRODUCT_COLOR, PRODUCT_PUBLSH_DATE, PRODUCT_END_DATE, PRODUCT_PROFIT,
+                    PRODUCT_SUBS
             };
 
     public ProductTable(SQLiteOpenHelper sqlHelper) {
@@ -46,6 +54,13 @@ public class ProductTable extends BaseTable<Product> {
         product.productName = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_NAME));
         product.productZxing = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_ZXING));
         product.link = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_LINK));
+        product.color = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_COLOR));
+        product.productDate = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_PUBLSH_DATE));
+        product.expirationDate = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_END_DATE));
+        product.profit = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_PROFIT));
+        String subs = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_SUBS));
+        product.subProducts = product.parseSub(subs);
+
         return product;
     }
 
@@ -60,6 +75,11 @@ public class ProductTable extends BaseTable<Product> {
         values.put(PRODUCT_SELF_PRICE, item.seltPrice);
         values.put(PRODUCT_ZXING, item.productZxing);
         values.put(PRODUCT_LINK, item.link);
+        values.put(PRODUCT_COLOR, item.color);
+        values.put(PRODUCT_PROFIT, item.profit);
+        values.put(PRODUCT_PUBLSH_DATE, item.productDate);
+        values.put(PRODUCT_END_DATE, item.expirationDate);
+        values.put(PRODUCT_SUBS, item.getSubString(item.subProducts));
         return values;
     }
 
@@ -71,6 +91,11 @@ public class ProductTable extends BaseTable<Product> {
                 + PRODUCT_COUNT + " varchar," + PRODUCT_LEFT + " varchar,"
                 + PRODUCT_PRICE + " varchar," + PRODUCT_LINK
                 + " varchar," + PRODUCT_SELF_PRICE
+                + " varchar," + PRODUCT_COLOR
+                + " varchar," + PRODUCT_PUBLSH_DATE
+                + " varchar," + PRODUCT_END_DATE
+                + " varchar," + PRODUCT_PROFIT
+                + " varchar," + PRODUCT_SUBS
                 + " varchar," + PRODUCT_ZXING + " varchar)";
         return sql;
     }
